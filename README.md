@@ -1,9 +1,22 @@
-# C++ Notes by Amit Maity
+# C++ Notes & Programs by Amit Maity
 
 
 
 <h3 align="left">Languages and Tools:</h3>
 <p align="left"> <a href="https://www.w3schools.com/cpp/" target="_blank"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/cplusplus/cplusplus-original.svg" alt="cplusplus" width="40" height="40"/> </a> 
+  
+  <h2 align="center">🛣 Full Structure </h2>
+  
+## Notes
+<h4><b>0. <a href="https://github.com/maityamit/C_plus-plus/blob/master/My%20Notes/00%20-%20Syllabus%20in%20Short.pdf" target="_blank">Syllabus</a> </b></h4>
+<a href="" target="_blank"><h4><b>1. Basic</b></h4> </a>
+
+
+<br>
+
+## Program
+<h4><b>0. <a href="https://github.com/maityamit/C_plus-plus/tree/master/Program/00%20-%20Basic" target="_blank">Basic Programs (20+) </a> </b></h4>
+<h4><b>1. <a href="https://github.com/maityamit/C_plus-plus/tree/master/Program/01%20-%20Kunal's%20Pattern%20Solution" target="_blank">Kunal Khuswaha Patterns' (31)</a> </b></h4>
 
 <h2 align="center">📝 Created by </h2>
 
