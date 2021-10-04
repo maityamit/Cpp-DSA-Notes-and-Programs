@@ -9,7 +9,8 @@
   
 ## Notes
 <h4><b>0. <a href="https://github.com/maityamit/C_plus-plus/blob/master/My%20Notes/00%20-%20Syllabus%20in%20Short.pdf" target="_blank">Syllabus</a> </b></h4>
-<a href="" target="_blank"><h4><b>1. Basic</b></h4> </a>
+<h4><b>1. <a href="https://github.com/maityamit/C_plus-plus/blob/master/My%20Notes/01%20-%20C%2B%2B%20Basic%20Fundamentals.pdf" target="_blank">Basic Fundamentals</a> </b></h4>
+
 
 
 <br>
