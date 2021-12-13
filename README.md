@@ -17,7 +17,8 @@
 
 ## Program
 <h4><b>0. <a href="https://github.com/maityamit/C_plus-plus/tree/master/Program/00%20-%20Basic" target="_blank">Basic Programs (20+) </a> </b></h4>
-<h4><b>1. <a href="https://github.com/maityamit/C_plus-plus/tree/master/Program/01%20-%20Kunal's%20Pattern%20Solution" target="_blank">Kunal Khuswaha Patterns' (31)</a> </b></h4>
+<h4><b>1. <a href="https://github.com/maityamit/C_plus-plus/tree/master/Program/01%20-%20Kunal's%20Pattern%20Solution" target="_blank">Kunal Khuswaha Patterns' (31)</a> </b</h4>
+<h4><b>2. <a href="https://github.com/maityamit/C_plus-plus/tree/master/Program/02%20-%20Arrays" target="_blank">Array </a> </b>
 
 <h2 align="center">📝 Created by </h2>
 
