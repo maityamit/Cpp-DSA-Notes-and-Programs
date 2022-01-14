@@ -1,0 +1,23 @@
+class Solution{
+    public:
+        bool isPrime(int N)
+    {
+        int c=0;
+        if(N==1||N==2||N==3){
+            return true;
+        }else{
+            for(int i=2;i<=sqrt(N);i++){
+                if(N%i==0){
+                    c=1;
+                    break;
+                }
+            }
+            if(c==1){
+                return false;
+            }else{
+                return true;
+            }
+        }
+    }
+
+};
