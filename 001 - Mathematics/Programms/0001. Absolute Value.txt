@@ -1,0 +1,12 @@
+class Solution{
+    public:
+        int absolute(int I) {
+        if(I<0){
+            return I*(-1);
+        }else{
+            return I;
+        }
+          
+    }
+
+};

@@ -1,0 +1,13 @@
+class Solution{
+    public:
+        // Complete this function
+    long long factorial(int N) {
+        long long s = 1;
+        while(N>1){
+            s*=N;
+            N--;
+        }
+        return s;
+    }
+
+};

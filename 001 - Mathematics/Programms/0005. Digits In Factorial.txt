@@ -1,0 +1,16 @@
+class Solution{
+    public:
+    int digitsInFactorial(int N)
+    {
+        int sum = 1,count=0;
+        while(N>1){
+            sum*=N;
+            N--;
+        }
+        while(sum>0){
+            count++;
+            sum/=10;
+        }
+        return count;
+    }
+};
