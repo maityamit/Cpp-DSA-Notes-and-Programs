@@ -4,24 +4,29 @@
 using namespace std;
 
 int keypad(int num, string output[]){
-    /* Insert all the possible combinations of the integer number into the output string array. You do not need to
-    print anything, just return the number of strings inserted into the array.
-    */
-    string keypad_st[8] =  {"abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
+
+	
+    string key[]={"","","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
+
     if(num==0){
         output[0]="";
         return 1;
     }
-    int hello = keypad(num/10,output);
-    int count = ((((num%10)-2)==5)||(((num%10)-2)==7))?4:3;
-    int lo =hello;
-    for(int j=0;j<count;j++){
-        for(int i=0;i<hello;i++){
-            output[i+lo]=output[i]+keypad_st[(num%10)-2][j];
-        }
-        lo=lo+lo;
+    int last = num%10;
+    int smallOutputSize = keypad(num/10,output);
+
+    // Copy output array
+    string* temp = new string[smallOutputSize];
+    for(int i=0;i<smallOutputSize;i++){
+        temp[i]=output[i];
     }
-    return hello*count;
+
+    for(int i=0;i<key[last].size();i++){
+        for(int j=0;j<smallOutputSize;j++){
+            output[i*smallOutputSize+j] = temp[j]+key[last][i];
+        }
+    }
+    return key[last].length()*smallOutputSize;
 }
 
 int main(){
