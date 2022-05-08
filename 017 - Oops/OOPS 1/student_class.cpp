@@ -6,6 +6,14 @@ class Student{
 		int age;
 	//Function use
 	public:
+		//Constructor
+		Student(int rollNumber){
+		   this->rollNumber = rollNumber;
+		}
+		//Destructor
+		~Student(){
+			cout<<"Destructor Called"<<endl;
+		}
 		void display(){
 			cout<<age<<" "<<rollNumber<<endl;
 		}
