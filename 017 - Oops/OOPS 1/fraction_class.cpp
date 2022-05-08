@@ -30,11 +30,17 @@ class Fraction{
 			this->den = this->den / gcd;
 		}
 		//Add two fraction
-		void add(Fraction f2){
+		void add(Fraction  const &f2){
 			int lcm = (this->den)*(f2.den);
 			int update_num = ((lcm/this->den)*this->num)+((lcm/f2.den)*f2.num);
 			this->num = update_num;
 			this->den = lcm;
+			simplify();
+		}
+		//Multiply two fraction
+		void multiply(Fraction  const &f2){
+			this->num = this->num * f2.num;
+			this->den = this->den * f2.den;
 			simplify();
 		}
 		
