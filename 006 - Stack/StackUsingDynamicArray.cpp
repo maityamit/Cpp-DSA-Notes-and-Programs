@@ -1,14 +1,15 @@
 #include <iostream>
 using namespace std;
+template <typename T>
 class StackUsingDynamicArray{
-	int *data;
+	T *data;
 	int nextIndex;
 	int capacity;
 	public:
 		StackUsingDynamicArray(){
 			nextIndex = 0;
 			capacity = 5;
-			data = new int[capacity];
+			data = new T[capacity];
 		}
 		int size(){
 			return nextIndex;
@@ -36,7 +37,7 @@ class StackUsingDynamicArray{
 			}
 		}
 		void push(int val){
-			int *newData = new int[capacity*2];
+			T *newData = new T[capacity*2];
 			for(int i=0;i<capacity;i++){
 				newData[i]=data[i];
 			}

@@ -3,7 +3,7 @@
 using namespace std;
 int main(){
 	
-	StackUsingDynamicArray data;
+	StackUsingDynamicArray<int> data;
 	data.push(10);
 	data.push(20);
 	data.push(30);
