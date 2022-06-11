@@ -33,7 +33,7 @@ class QueueUsingArray{
 				return;
 			}
 			data[nextIndex] = value;
-			nextIndex = (nextIndex+1)%5;
+			nextIndex = (nextIndex+1)%capacity;
 			size++;
 			if(firstIndex==-1){
 			    firstIndex = 0;
@@ -45,7 +45,7 @@ class QueueUsingArray{
 				return 0;
 			}
 			int val = data[firstIndex];
-			firstIndex = (firstIndex+1)%5;
+			firstIndex = (firstIndex+1)%capacity;
 			size--;
 			if(size==0){
 				firstIndex = -1;
