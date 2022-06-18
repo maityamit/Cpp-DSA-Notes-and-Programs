@@ -3,25 +3,7 @@
 #include<queue>
 using namespace std;
 
-// Take Input Processing 1
-TreeNode<int>* takeInput(){
-	int rootData;
-	cout<<"Enter Element: ";
-	cin>>rootData;
-	TreeNode<int>* root = new TreeNode<int>(rootData);
-	cout<<"\nEnter no of child: ";
-	int n;
-	cin>>n;
-	for(int i=0;i<n;i++){
-		TreeNode<int>* temp = takeInput();
-		root->children.push_back(temp);
-	}
-	return root;
-}
 
-
-
-// Take Input Processing 2
 TreeNode<int>* takeInputLevelWise(){
 	int rootData;
 	cout<<"Enter Element: ";
@@ -47,20 +29,6 @@ TreeNode<int>* takeInputLevelWise(){
 	}
 	return root;
 }
-
-//Print Childs Process 01
-void printChilds(TreeNode<int>* root){
-	cout<<root->data<<" : ";
-	for(int i=0;i<root->children.size();i++){
-		cout<<root->children.at(i)->data<<",";
-	}
-	cout<<"\n";
-	for(int i=0;i<root->children.size();i++){
-		printChilds(root->children[i]);
-	}
-}
-
-//Print Childs Process 02
 void printLevelWise(TreeNode<int>* root) {
     queue<TreeNode<int>*> pendingNodes;
     pendingNodes.push(root);
@@ -80,13 +48,28 @@ void printLevelWise(TreeNode<int>* root) {
 	}
 }
 
-
+//Count Nodes Function
+TreeNode<int>* maxDataNodes(TreeNode<int>* root){
+	int max = 0;
+	TreeNode<int>* ans = NULL;
+	for(int i=0;i<root->children.size();i++){
+		TreeNode<int>* temp = maxDataNodes(root->children.at(i));
+		if(temp->data > max){
+			ans = temp;
+			max = temp->data;
+		}
+	}
+	if(root->data > max){
+		ans = root;
+		max = root->data;
+	}
+	return ans;
+}
 
 int main(){
 	
-	TreeNode<int>* root = takeInput();
-
-	
-	printChilds(root);
+	TreeNode<int>* root = takeInputLevelWise();
+	TreeNode<int>* hell = maxDataNodes(root);
+	cout<<"Max: "<<hell->data<<endl;
 	return 0;
 }
