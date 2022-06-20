@@ -89,9 +89,66 @@ void printTreeLevelWise(BinaryTreeNode<int>* root){
 	}
 }
 
+int countNodes(BinaryTreeNode<int>* root){
+	if(root==NULL){
+		return 0;
+	}
+	return countNodes(root->left)+countNodes(root->right)+1;
+}
+
+bool findaNode(BinaryTreeNode<int>* root,int k){
+	bool ans = false;
+	if(root->data==k){
+		ans = true;
+	}
+	if(root->left){
+		bool hi = findaNode(root->left,k);
+		if(hi){
+			ans=hi;
+		}
+	}
+	if(root->right){
+		bool hi = findaNode(root->right,k);
+		if(hi){
+			ans=hi;
+		}
+	}
+	return ans;
+}
+
+int heightOFtree(BinaryTreeNode<int>* root){
+	int count=0;
+	if(root==NULL){
+		return 0;
+	}
+	int l = heightOFtree(root->left);
+	int r = heightOFtree(root->right);
+	if(l>r){
+		count=l;
+	}else{
+		count=r;
+	}
+	return count+1;
+}
+
+
+void miror(BinaryTreeNode<int>* root){
+	if(root==NULL){
+		return;
+	}
+	BinaryTreeNode<int>* yash1 = root->left;
+	root->left = root->right;
+	root->right = yash1;
+	miror(root->left);
+	miror(root->right);
+}
 
 int main(){
+	
+	//1 2 3 4 5 6 7 -1 -1 -1 -1 -1 -1 -1 -1
 	BinaryTreeNode<int>* root = takeInputLevelWise();
+	printTreeLevelWise(root);
+	miror(root);
 	printTreeLevelWise(root);
 	delete(root);
 	return 0;
