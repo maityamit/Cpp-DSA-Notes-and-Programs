@@ -1,5 +1,6 @@
 #include<iostream>
 #include<queue>
+#include <cmath>
 #include "BinaryTreeNode.h"
 using namespace std;
 BinaryTreeNode<int>* takeInput(){
@@ -143,13 +144,113 @@ void miror(BinaryTreeNode<int>* root){
 	miror(root->right);
 }
 
+void preOrderTraversal(BinaryTreeNode<int>* root){
+	if(root==NULL){
+		return;
+	}
+	cout<<root->data<<" ";
+	preOrderTraversal(root->left);
+	preOrderTraversal(root->right);
+}
+
+void postOrderTraversal(BinaryTreeNode<int>* root){
+	if(root==NULL){
+		return;
+	}
+	postOrderTraversal(root->left);
+	postOrderTraversal(root->right);
+	cout<<root->data<<" ";
+}
+void inOrderTraversal(BinaryTreeNode<int>* root){
+	if(root==NULL){
+		return;
+	}
+	inOrderTraversal(root->left);
+	cout<<root->data<<" ";
+	inOrderTraversal(root->right);
+}
+
+int DiameterFirstApproch(BinaryTreeNode<int>* root){
+	if(root==NULL){
+		return 0;
+	}
+	int op1 = heightOFtree(root->left)+heightOFtree(root->right);
+	int op2 = DiameterFirstApproch(root->left);
+	int op3 = DiameterFirstApproch(root->right);
+	return max(op1,max(op2,op3));
+}
+
+pair<int,int> DiameterSecondApproch(BinaryTreeNode<int>* root){
+	if(root==NULL){
+		pair<int,int> p;
+		p.first = 0;
+		p.second = 0;
+		return p;
+	}
+    pair<int,int> l = DiameterSecondApproch(root->left);
+    pair<int,int> r = DiameterSecondApproch(root->right);
+    int lh = l.first;
+    int rh = r.first;
+    int ld = l.second;
+    int rd = r.second;
+    int height = 1+max(lh,rh);
+    int dia = max(lh+rh,max(ld,rd));
+    pair<int,int> pa;
+    pa.first = height;
+    pa.second = dia;
+    return pa;
+}
+
+pair<int,int> maxANDmin(BinaryTreeNode<int>* root){
+	if(root==NULL){
+		pair<int,int> p;
+		p.first = INT_MIN;
+		p.second = INT_MAX;
+		return p;
+	}
+	pair<int,int> left_ans = maxANDmin(root->left);
+	pair<int,int> right_ans = maxANDmin(root->right);
+	int lmx = left_ans.first;
+	int rmx = right_ans.first;
+	int lmn = left_ans.second;
+	int rmn = right_ans.second;
+	
+	pair<int,int> p;
+	p.first = max(root->data,max(lmx,rmx));
+	p.second = min(root->data,min(lmn,rmn));
+	return p;
+}
+
+int sumOfNodes(BinaryTreeNode<int>* root){
+	if(root==NULL){
+		return 0;
+	}
+	return root->data+sumOfNodes(root->left)+sumOfNodes(root->right);
+}
+
+bool isBalanced(BinaryTreeNode<int>* root){
+	 if (root == NULL) 
+        return true; 
+    int l=heightOFtree(root->left);
+	int r=heightOFtree(root->right);	
+   
+     if ( ( abs(l- r) ==0 || abs(l-r) == 1 ) && isBalanced(root->left) && isBalanced(root->right))
+        return true;
+    
+   return false;
+}
+
+void nodeWithoutSiblings(BinaryTreeNode<int>* root){
+	
+}
+
 int main(){
 	
-	//1 2 3 4 5 6 7 -1 -1 -1 -1 -1 -1 -1 -1
+	//8 3 10 1 6 -1 14 -1 -1 4 7 13 -1 -1 -1 -1 -1 -1 -1
+
 	BinaryTreeNode<int>* root = takeInputLevelWise();
 	printTreeLevelWise(root);
-	miror(root);
-	printTreeLevelWise(root);
+	nodeWithoutSiblings(root);
 	delete(root);
 	return 0;
 }
