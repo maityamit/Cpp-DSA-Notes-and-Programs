@@ -2,6 +2,7 @@
 #include<queue>
 #include <cmath>
 #include "BinaryTreeNode.h"
+#include "Node.h"
 using namespace std;
 BinaryTreeNode<int>* takeInput(){
 	cout<<"Enter Data: ";
@@ -244,13 +245,102 @@ void nodeWithoutSiblings(BinaryTreeNode<int>* root){
 	
 }
 
+void printLevelWiseDiffer(BinaryTreeNode<int>* root){
+	if(root==NULL){
+		return;
+	}
+	queue<BinaryTreeNode<int>*> qu;
+	qu.push(root);
+	qu.push(NULL);
+	while(qu.size()!=0){
+		BinaryTreeNode<int>* temp = qu.front();
+		qu.pop();
+		if(temp!=NULL){
+			cout<<temp->data<<" ";
+			if(temp->left!=NULL){
+			qu.push(temp->left);
+		}
+		if(temp->right!=NULL){
+			qu.push(temp->right);
+		}
+		}else{
+			if(qu.size()==0){
+				break;
+			}
+		 	qu.push(NULL);
+			cout<<endl;
+		}
+	}
+}
+
+BinaryTreeNode<int>* removeLeafNodes(BinaryTreeNode<int>* root){
+	if(root->left==NULL && root->right==NULL){
+		delete root;
+		return NULL;
+	}
+	if(root->left){
+		BinaryTreeNode<int>* left = removeLeafNodes(root->left);
+		root->left=left;
+	}
+	if(root->left){
+	BinaryTreeNode<int>* right = removeLeafNodes(root->right);
+	root->right=right;
+	}
+	return root;
+}
+
+vector<Node<int>*> constructLinkedListForEachLevel(BinaryTreeNode<int> *root) {
+	 vector<Node<int>*> vt;
+    if(root==NULL){
+        vt.push_back(NULL);
+        return vt;
+    }
+    queue<BinaryTreeNode<int>*> qu;
+	qu.push(root);
+	qu.push(NULL);
+	Node<int>* start=NULL;
+	Node<int>* end=NULL;
+	while(qu.size()!=0){
+		BinaryTreeNode<int>* temp = qu.front();
+		qu.pop();
+		if(temp!=NULL){
+			Node<int>* tempu = new Node<int>(temp->data);
+			if(start==NULL){
+				start=tempu;
+                vt.push_back(start);
+				end=tempu;
+			}else{
+				end->next=tempu;
+				end=end->next;
+			}
+			if(temp->left!=NULL){
+				qu.push(temp->left);
+			}
+			if(temp->right!=NULL){
+				qu.push(temp->right);
+			}
+		}else{
+            end->next=NULL;
+			if(qu.size()==0){
+				break;
+			}
+			qu.push(NULL);
+			start=NULL;
+			end=NULL;
+		}
+	}
+	return vt;
+}
+
+
 int main(){
 	
 	//8 3 10 1 6 -1 14 -1 -1 4 7 13 -1 -1 -1 -1 -1 -1 -1
 
 	BinaryTreeNode<int>* root = takeInputLevelWise();
-	printTreeLevelWise(root);
-	nodeWithoutSiblings(root);
+	cout<<endl;
+	BinaryTreeNode<int>* temp = removeLeafNodes(root);
+	printTreeLevelWise(temp);
 	delete(root);
 	return 0;
 }
