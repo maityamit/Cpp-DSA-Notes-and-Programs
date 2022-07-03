@@ -2,14 +2,13 @@
 #include<iostream>
 using namespace std;
 void print(int n){
-    //write your code here
-    static int i = 1;
-    if(n > 0){
-        cout<<i++<<" ";
-        print(--n);
+    if(n==0){
+        return;
     }
-    
+    print(n-1);
+    cout<<n<<" ";
 }
+
 
 int main(){
 	print(12);
