@@ -1,28 +1,13 @@
 #include<iostream>
 #include "node.cpp"
 using namespace std;
-
 void printReverse(Node *head)
 {
-
-    //Write your code here
-    int count = 0;
-    Node *temp = head;
-    while(temp!=NULL){
-        temp = temp->next;
-        count++;
-    }
-    int *arr = new int[count];
-    Node *temp1 = head;
-    for(int i=count-1;i>=0;i--){
-        arr[i]=temp1->data;
-        temp1 = temp1->next;
-    }
-    for(int i=0;i<count;i++){
-        cout<<arr[i]<<" ";
-    }
-    
-    
+    if(head==NULL){
+		return;
+}
+	printReverse(head->next);
+	cout<<head->data<<" ";
 }
 
 Node *takeinput()
