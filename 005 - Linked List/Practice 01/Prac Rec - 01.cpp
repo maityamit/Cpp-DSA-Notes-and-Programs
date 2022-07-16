@@ -553,6 +553,6 @@ int main(){
 //  printLinkedList(evenAfterOddLL(head));
 //  printLinkedList(skipMdeleteN(head,2,2));
 //  printLinkedList(swapTwoNodes(head,2,4));
-    printLinkedList(kReverse(head,3));
+//  printLinkedList(kReverse(head,3));
 	return 0;
 }
