@@ -527,6 +527,45 @@ Node* kReverse(Node* head,int k){
 	return vishal;
 }
 
+//Next Number
+Node* nextNumber(Node* head){
+	if(head==NULL){
+        return NULL;
+    }
+    Node *temp = head;
+    int count = 1;
+    while(temp->next!=NULL){
+        temp = temp->next;
+        count++;
+    }
+    if(temp->data != 9){
+        temp->data = (temp->data)+1;
+        return head;
+    }
+    Node *amit = head;
+    int sum = 0;
+    for(int i=count-1;i>=0;i--){
+        sum = sum*10 + (amit->data);
+        amit = amit->next;
+    }
+    sum = sum+1;
+    Node *yash_head = NULL;
+    Node *yash_tail = NULL;
+    while(sum>0){
+        Node *vishal = new Node(sum%10);
+        if(yash_head==NULL){
+            yash_head = vishal;
+            yash_tail = vishal;
+        }else{
+            yash_tail->next = vishal;
+            yash_tail = yash_tail->next;
+        }
+        sum/=10;
+    }
+    return yash_head;
+}
+
+
 
 int main(){
 	//10 20 30 40 50 60 70 80 90 100
@@ -554,5 +593,8 @@ int main(){
 //  printLinkedList(skipMdeleteN(head,2,2));
 //  printLinkedList(swapTwoNodes(head,2,4));
 //  printLinkedList(kReverse(head,3));
+
+    
+    printLinkedList(deleteAlternative(head));
 	return 0;
 }

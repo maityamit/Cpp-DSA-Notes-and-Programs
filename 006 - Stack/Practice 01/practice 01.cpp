@@ -63,6 +63,58 @@ bool redundantBracket(string s){
 	return false;
 }
 
+//Stock Span Function
+int* stockSpan(int* price,int size){
+	int* data=new int[size];
+	stack<int> st;
+	st.push(0);
+	data[0]=1;
+	for(int i=1;i<size;i++){
+		while(st.size()!=0 && price[i]>price[st.top()]){
+			st.pop();
+		}
+		if(st.size()==0){
+			data[i]=i+1;
+		}else{
+			data[i]=i-st.top();
+		}
+		st.push(i);
+	}
+	return data;
+}
+
+//Minimum Brackets Reversal
+int minBracketRev(string s){
+	if(s.length()%2!=0){
+		return -1;
+	}
+	stack<char> st;
+	for(int i=0;i<s.length();i++){
+		if(s[i]=='}'&&st.size()!=0&&st.top()=='{'){
+			st.pop();
+		}else{
+			st.push(s[i]);
+		}
+		
+	}
+	char c1,c2;
+	int count=0;
+	while(st.size()!=0){
+		c1=st.top();
+		st.pop();
+		c2=st.top();
+		st.pop();
+		if(c1==c2){
+			count++;
+		}else{
+			if(c1=='}'){
+				count+=2;
+			}
+		}
+	}
+	return count;
+}
+
 int main(){
 	
 	
@@ -132,5 +184,6 @@ int main(){
    
 //  cout<<redundantBracket("(a+b)")<<endl;
 	
+	cout<<minBracketRev("{{{{}{")<<endl;
 	
 }
