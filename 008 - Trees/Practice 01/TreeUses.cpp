@@ -147,6 +147,92 @@ void postOrderTraversal(TreeNode* head){
 	cout<<head->data<<" ";
 }
 
+//Contains x in a tree or not 
+bool containsX(TreeNode* root,int x){
+	bool ans = false;
+	for(int i=0;i<root->children.size();i++){
+		bool temp = containsX(root->children[i],x);
+		if(temp==true){
+			ans=true;
+		}
+	}
+	if(root->data==x){
+		return true;
+	}
+	return ans;
+}
+
+//Count Nodes Greater than X
+int nodesGreaterThanX(TreeNode* root,int k){
+	int count=0;
+    for(int i=0;i<root->children.size();i++){
+    	count+=nodesGreaterThanX(root->children[i],k);
+	}
+	if(root->data>k){
+		count++;
+	}
+	return count;
+}
+
+//Node with Maximum Child Sum
+TreeNode* nodewithMaxChild(TreeNode* root){
+	int sum = root->data;
+	TreeNode* yash=root;
+	for(int i=0;i<root->children.size();i++){
+		sum+=root->children[i]->data;
+	}
+	for(int i=0;i<root->children.size();i++){
+		TreeNode* temp = nodewithMaxChild(root->children[i]);
+		int xSum=temp->data;
+		for(int j=0;j<temp->children.size();j++){
+			xSum+=temp->children[j]->data;
+		}
+		if(xSum>sum){
+			yash=temp;
+		}
+	}
+	return yash;
+}
+
+//Structure Identical
+bool structureIdentical(TreeNode* tree1,TreeNode* tree2){
+	if(tree1->data!=tree2->data){
+		return false;
+	}
+	if(tree1->children.size()!=tree2->children.size()){
+		return false;
+	}
+	for(int i=0;i<tree1->children.size();i++){
+		return structureIdentical(tree1->children[i],tree2->children[i]);
+	}
+	return true;
+}
+
+//Next Larger
+TreeNode* nextLarger(TreeNode* root,int k){
+	if(root==NULL){
+		return root;
+	}
+	TreeNode* temp = NULL;
+	if(k<root->data){
+		temp=root;
+	}
+	for(int i=0;i<root->children.size();i++){
+		TreeNode* shortAns = nextLarger(root->children[i],k);
+		if(shortAns==NULL){
+			continue;
+		}else{
+			if(temp==NULL){
+				temp = shortAns;
+			}else if(temp->data > shortAns->data && shortAns->data>k){
+				temp = shortAns;
+			}
+		}
+	}
+	return temp;
+}
+
+
 int main(){
 	
 	// 1 3 2 3 4 2 5 6 2 8 12 3 10 11 9 0 0 0 0 0 0 0 
@@ -166,7 +252,16 @@ int main(){
 	postOrderTraversal(root);
 	cout<<endl;
 	depthofNode(root,1);
+	cout<<endl;
+	cout<<"Contains X or Not: "<<containsX(root,3)<<endl;
+	cout<<"Greater Than X: "<<nodesGreaterThanX(root,35)<<endl;
+	TreeNode* temp = nodewithMaxChild(root);
+	cout<<"Max Sum root data: "<<temp->data<<endl;
 	
+//	TreeNode* root1 = takeInput();
+//	cout<<"\nSame structure: "<<structureIdentical(root,root1)<<endl;
+	cout<<"\nNext Larger: "<<endl;
+	printTree(nextLarger(root,21));
 	
 //	TreeNode* root = new TreeNode(10);
 //	TreeNode* ch1 = new TreeNode(20);
