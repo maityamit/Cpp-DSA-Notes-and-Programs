@@ -1,0 +1,14 @@
+3 Questions - 90 minitues 
+
+
+
+
+
+
+Random random = new Random();
+int min = 1;
+int max = 30;
+for(int i=0;i<3;i++){
+	int x = random.nextInt(max) + min;
+      System.out.println("Question: "+x);
+}
